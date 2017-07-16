@@ -40,14 +40,11 @@ app.get('/authorize', (req, res) => {
 
 app.post('/webhook', (req, res) => {
     if (req.body.object == "page") {
-        if(!isMenuSet){
-            menu.createMenu();
-            isMenuSet = true;
-        }
         let events = req.body.entry[0].messaging;
         for (let i = 0; i < events.length; i++) {
             let event = events[i];
             let sender = event.sender.id;
+            console.log('Checking event'+ event.message.text);
             userinfohandler.findOneAndUpdateUserInfo(sender,{}).then(user => {
                 if (process.env.MAINTENANCE_MODE && ((event.message && event.message.text) || event.postback)) {
                     sendMessage({text: `Sorry I'm taking a break right now.`}, sender);
