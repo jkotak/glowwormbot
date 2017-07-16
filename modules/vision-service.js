@@ -6,10 +6,10 @@ const privateKey = process.env.EINSTEIN_VISION_PRIVATE_KEY;
 const jwtToken = process.env.EINSTEIN_JWT_TOKEN;
 const modelId = process.env.EINSTEIN_MODEL_ID;
 
-const oAuthToken   = require('./lib/oauth-token'),
-      updateToken  = require('./lib/update-token'),
+const oAuthToken   = require('../lib/oauth-token'),
+      updateToken  = require('../lib/update-token'),
       Episode7 = require('episode-7'),
-      queryVisionApi = require("./lib/query-vision-api.js");
+      queryVisionApi = require("../lib/query-vision-api.js");
 
 exports.classify = imageURL => new Promise((resolve, reject) => {
     let t = Episode7.run(
