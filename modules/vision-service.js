@@ -22,6 +22,7 @@ exports.classify = imageURL => new Promise((resolve, reject) => {
             privateKey,
             jwtToken
           ).then(predictions => {
+            console.log('Predictions'+ predictions);
             let predictionsJSON = JSON.parse(predictions);
             return predictionsJSON.probabilities[0].label;
           });
