@@ -2,7 +2,7 @@
 
 let messenger = require('./messenger'),
     formatter = require('./formatter'),
-    visionService = require('./vision-service-mock');
+    Episode7 = require('episode-7');
 
 
 
