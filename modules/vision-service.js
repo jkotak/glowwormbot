@@ -13,7 +13,8 @@ const oAuthToken   = require('../lib/oauth-token'),
 
 exports.classify = imageURL => new Promise((resolve, reject) => {
     console.log('In Classify');
-    let t = Episode7.run(
+      
+    return Episode7.run(
             queryVisionApi,
             pvsUrl,
             imageURL,
@@ -21,13 +22,7 @@ exports.classify = imageURL => new Promise((resolve, reject) => {
             accountId,
             privateKey,
             jwtToken
-          ).then(predictions => {
-            console.log('Predictions'+ predictions);
-            let predictionsJSON = JSON.parse(predictions);
-            console.log(predictionsJSON.probabilities[0].label);
-            return predictionsJSON.probabilities[0].label;
-          });
-      console.log('T is ' +t);
+          )
 });
 
 
