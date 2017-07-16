@@ -10,6 +10,18 @@
     "FB_VERIFY_TOKEN": {
       "description": "Facebook Verify Token",
       "value":""
+    },
+    "EINSTEIN_VISION_ACCOUNT_ID": {
+      "description": "Account ID for Einstein Vision",
+      "value":""
+    },
+    "EINSTEIN_VISION_PRIVATE_KEY": {
+      "description": "Private key for Einstein Vision",
+      "value":""
+    },
+    "EINSTEIN_VISION_URL": {
+      "description": "Einstein Vision URL",
+      "value":"https://api.einstein.ai"
     }
   }
 }
