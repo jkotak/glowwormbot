@@ -1,8 +1,5 @@
 "use strict";
 
-var https = require('https');
-
-
 const pvsUrl = process.env.EINSTEIN_VISION_URL;
 const accountId  = process.env.EINSTEIN_VISION_ACCOUNT_ID;
 const privateKey = process.env.EINSTEIN_VISION_PRIVATE_KEY;
@@ -11,6 +8,7 @@ const modelId = process.env.EINSTEIN_MODEL_ID;
 
 const oAuthToken   = require('./lib/oauth-token'),
       updateToken  = require('./lib/update-token'),
+      Episode7 = require('episode-7'),
       queryVisionApi = require("./lib/query-vision-api.js");
 
 exports.classify = imageURL => new Promise((resolve, reject) => {
