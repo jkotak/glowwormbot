@@ -11,13 +11,11 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
     if (attachments.length > 0) {
         let attachment = attachments[0];
         if (attachment.type === "image") {
-                messenger.send({text: 'OK, let me look at that picture...'}, sender);
-                visionService.classify(attachment.url)
-                    .then(houseType => {
-                        messenger.send({text: `Looking for houses matching "${houseType}"`}, sender);
-                        return salesforce.findPropertiesByCategory(houseType)
-                    })
-                .then(properties => messenger.send(formatter.formatProperties(properties), sender))
+            messenger.send({text: 'OK, let me look at that picture...'}, sender);
+            visionService.classify(attachment.url)
+                .then(productType => {
+                    messenger.send({text: `Looking for product matching "${productType}"`}, sender);
+                });
         }else if (attachment.type === "location") {
             visionService.address( attachment.payload.coordinates.lat, attachment.payload.coordinates.long)
                 .then(city => {
