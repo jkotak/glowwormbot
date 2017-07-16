@@ -12,6 +12,7 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
             messenger.send({text: 'OK, let me look at that picture...'}, sender);
             visionService.classify(attachment.payload.url)
                 .then(productType => {
+                    console.log('ProductType' + productType);
                     messenger.send({text: `Looking for product matching "${productType}"`}, sender);
                 });
         }else if (attachment.type === "location") {
