@@ -22,7 +22,7 @@ exports.classify = imageURL => new Promise((resolve, reject) => {
             accountId,
             privateKey,
             jwtToken
-          )
+          );
 });
 
 
