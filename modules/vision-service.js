@@ -2,11 +2,33 @@
 
 var https = require('https');
 
+
+const pvsUrl = process.env.EINSTEIN_VISION_URL;
+const accountId  = process.env.EINSTEIN_VISION_ACCOUNT_ID;
+const privateKey = process.env.EINSTEIN_VISION_PRIVATE_KEY;
+const jwtToken = process.env.EINSTEIN_JWT_TOKEN;
+const modelId = process.env.EINSTEIN_MODEL_ID;
+
+const oAuthToken   = require('./lib/oauth-token'),
+      updateToken  = require('./lib/update-token'),
+      queryVisionApi = require("./lib/query-vision-api.js");
+
 exports.classify = imageURL => new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve("contemporary");
-    }, 2000);
+    let t = Episode7.run(
+            queryVisionApi,
+            pvsUrl,
+            imageURL,
+            modelId,
+            accountId,
+            privateKey,
+            jwtToken
+          ).then(predictions => {
+            let predictionsJSON = JSON.parse(predictions);
+            return predictionsJSON.probabilities[0].label;
+          });
 });
+
+
 
 exports.address = (latitude, longitude) => {
     return new Promise(function (resolve, reject) {
