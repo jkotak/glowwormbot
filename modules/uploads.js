@@ -2,7 +2,7 @@
 
 let messenger = require('./messenger'),
     formatter = require('./formatter'),
-    visionService = require('./vision-service.js'),
+    visionService = require('./vision-service.js');
 
 exports.processUpload = (sender, attachments,lastKeyword) => {
     
