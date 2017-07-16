@@ -2,7 +2,7 @@
 
 let messenger = require('./messenger'),
     formatter = require('./formatter'),
-    Episode7 = require('episode-7');
+    formatter = require('./vision-service.js'),
 
 
 
