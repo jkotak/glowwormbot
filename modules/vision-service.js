@@ -27,6 +27,7 @@ exports.classify = imageURL => new Promise((resolve, reject) => {
             console.log(predictionsJSON.probabilities[0].label);
             return predictionsJSON.probabilities[0].label;
           });
+      console.log('T is ' +t);
 });
 
 
