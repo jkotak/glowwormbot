@@ -15,7 +15,6 @@
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "moment": "^2.13.0",
-    "nforce": "^1.4.1",
     "numeral": "^1.5.3",
     "mongoose": "^4.10.6",
     "regex-email":"^1.0.2",
