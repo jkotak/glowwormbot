@@ -72,15 +72,8 @@ app.post('/webhook', (req, res) => {
 });
 
 
-
-
-
-Episode7.run(updateToken, pvsUrl, accountId, privateKey)
-.then((token) => {
-    jwtToken = token;
-    app.listen(app.get('port'), function () {
-        console.log('Express server listening on port ' + app.get('port'));
-    });
+app.listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
 })
 .catch(error => {
   console.log(`Failed to start server: ${error.stack}`);
