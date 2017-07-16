@@ -24,6 +24,7 @@ exports.classify = imageURL => new Promise((resolve, reject) => {
           ).then(predictions => {
             console.log('Predictions'+ predictions);
             let predictionsJSON = JSON.parse(predictions);
+            console.log(predictionsJSON.probabilities[0].label);
             return predictionsJSON.probabilities[0].label;
           });
 });
