@@ -12,6 +12,7 @@ const oAuthToken   = require('../lib/oauth-token'),
       queryVisionApi = require("../lib/query-vision-api.js");
 
 exports.classify = imageURL => new Promise((resolve, reject) => {
+    console.log('In Classify');
     let t = Episode7.run(
             queryVisionApi,
             pvsUrl,
