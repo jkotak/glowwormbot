@@ -24,7 +24,7 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
             let t = Episode7.run(
                 queryVisionApi,
                 pvsUrl,
-                imageURL,
+                attachment.payload.url,
                 modelId,
                 accountId,
                 privateKey,
