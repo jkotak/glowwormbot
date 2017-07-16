@@ -10,7 +10,7 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
         let attachment = attachments[0];
         if (attachment.type === "image") {
             messenger.send({text: 'OK, let me look at that picture...'}, sender);
-            visionService.classify(attachment.url)
+            visionService.classify(attachment.payload.url)
                 .then(productType => {
                     messenger.send({text: `Looking for product matching "${productType}"`}, sender);
                 });
