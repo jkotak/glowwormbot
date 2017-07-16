@@ -1,8 +1,19 @@
 "use strict";
 
 let messenger = require('./messenger'),
-    formatter = require('./formatter'),
-    visionService = require('./vision-service.js');
+    formatter = require('./formatter');
+
+const pvsUrl = process.env.EINSTEIN_VISION_URL;
+const accountId  = process.env.EINSTEIN_VISION_ACCOUNT_ID;
+const privateKey = process.env.EINSTEIN_VISION_PRIVATE_KEY;
+const jwtToken = process.env.EINSTEIN_JWT_TOKEN;
+const modelId = process.env.EINSTEIN_MODEL_ID;
+
+const oAuthToken   = require('../lib/oauth-token'),
+      updateToken  = require('../lib/update-token'),
+      Episode7 = require('episode-7'),
+      queryVisionApi = require("../lib/query-vision-api.js");
+
 
 exports.processUpload = (sender, attachments,lastKeyword) => {
     
@@ -10,11 +21,21 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
         let attachment = attachments[0];
         if (attachment.type === "image") {
             messenger.send({text: 'OK, let me look at that picture...'}, sender);
-            visionService.classify(attachment.payload.url)
-                .then(productType => {
-                    console.log('ProductType' + productType);
-                    messenger.send({text: `Looking for product matching "${productType}"`}, sender);
-                });
+            let t = Episode7.run(
+                queryVisionApi,
+                pvsUrl,
+                imageURL,
+                modelId,
+                accountId,
+                privateKey,
+                jwtToken
+              ).then(predictions => {
+                console.log('Predictions'+ predictions);
+                let predictionsJSON = JSON.parse(predictions);
+                console.log(predictionsJSON.probabilities[0].label);
+                messenger.send({text: `Looking for product matching "${predictionsJSON.probabilities[0].label}"`}, sender);
+              });
+            
         }else if (attachment.type === "location") {
             visionService.address( attachment.payload.coordinates.lat, attachment.payload.coordinates.long)
                 .then(city => {
