@@ -11,11 +11,11 @@ exports.formatProperties = properties => {
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": "Sorry, no house found with that criteria. Do you want to contact a loan officer?",
+                    "text": "Sorry, I was unable to find a match",
                     "buttons": [
                         {
                             "type": "postback",
-                            "title": "Contact Loan Officer",
+                            "title": "Contact Me",
                             "payload": "contact_me"
                         }]
                 }
@@ -25,22 +25,22 @@ exports.formatProperties = properties => {
         properties.forEach(property => {
                 elements.push({
                     title: property.get("Title__c"),
-                    subtitle: `${property.get("Address__c")}, ${property.get("City__c")} ${property.get("State__c")} · ${numeral(property.get("Price__c")).format('$0,0')}`,
+                    subtitle: `${property.get("Address__c")} · ${numeral(property.get("Price__c")).format('$0,0')}-${numeral(property.get("Price__c")).format('$0,0')}`,
                     "image_url": property.get("Picture__c"),
                     "buttons": [
                         {
                             "type": "postback",
-                            "title": "Schedule visit",
+                            "title": "View More Options",
                             "payload": "schedule_visit," + property.getId()
                         },
                         {
                             "type": "postback",
-                            "title": "View realtor info",
+                            "title": "Contact Me",
                             "payload": "contact_broker," + property.getId()
                         },
                         {
                             "type": "postback",
-                            "title": "Contact loan officer",
+                            "title": "Incorrect Result",
                             "payload": "contact_me," + property.getId()
                         }
                     ]
@@ -60,51 +60,6 @@ exports.formatProperties = properties => {
 };
 
 
-exports.formatLoans = loans => {
-    let elements = [];
-    if(loans.length==0){
-        return {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": "Sorry, I couldn't find any loans. Do you want to contact a loan officer?",
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Contact Loan Officer",
-                            "payload": "contact_me"
-                        }]
-                }
-            }
-        };
-    }else{
-        loans.forEach(loan => {
-                elements.push({
-                    title: 'Loan Number:'+loan.get("loan_number__c"),
-                    subtitle: `Loan Status: ${loan.get("status__c")}`,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Contact Your Loan Officer",
-                            "payload": "schedule_visit"
-                        }
-                    ]
-                })
-            }
-        );
-        return {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": elements
-                }
-            }
-        };
-    }
-};
-
 exports.requestLocation = location => {
     return {
         "text":"Please share your location:",
@@ -115,28 +70,6 @@ exports.requestLocation = location => {
               "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_LOCATION"
           }
         ]
-    };
-};
-
-exports.formatProductOptions = productOptions =>{
-    let elements = [];
-    productOptions.forEach(product => {
-            elements.push({  
-                "type":"postback",
-                "title":product.get("Product_Type__c"),
-                "payload":"show_rates," + product.get("Product_Type__c")
-            })
-        }
-    );
-    return {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "button",
-                "text":"Please select a mortgage product type:",
-                "buttons": elements
-            }
-        }
     };
 };
 
