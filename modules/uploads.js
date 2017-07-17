@@ -1,6 +1,7 @@
 "use strict";
 
 let messenger = require('./messenger'),
+    producthandler = require('./producthandler'),
     formatter = require('./formatter');
 
 const pvsUrl = process.env.EINSTEIN_VISION_URL;
@@ -30,10 +31,18 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 privateKey,
                 jwtToken
               ).then(predictions => {
-                console.log('Predictions'+ predictions);
-                let predictionsJSON = JSON.parse(predictions);
-                console.log(predictionsJSON.probabilities[0].label);
                 messenger.send({text: `Ah! You are looking for more information on ${predictionsJSON.probabilities[0].label}. Let me search and I will be right with you...`}, sender);
+                    
+                var array = [];
+                let predictionsJSON = JSON.parse(predictions);
+                for(var i = 0; i < predictions.length; i++) {
+                    var obj = predictions[i];
+                    console.log(obj.label);
+                    array.push(obj.label);
+                }
+                producthandler.findProductByCategory(array).then(products =>{
+                    formatter.formatProducts(properties)
+                });
               });
             
         }else if (attachment.type === "location") {
@@ -41,11 +50,8 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 .then(city => {
                     console.log(city);
                     messenger.send({text: `${city}, what a beautiful city! Looking for houses within 10 miles of your vicinity...`}, sender);
-                    return salesforce.findProperties({city: city})
-                })
-                .then(properties => messenger.send(formatter.formatProperties(properties), sender))
-        }
-        else {
+                });
+        }else {
             messenger.send({text: 'This type of attachment is not supported'}, sender);
         }
     }
