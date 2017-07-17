@@ -7,9 +7,8 @@ let messenger = require('./messenger'),
 
 
 
-exports.contact_broker = (sender, values) => {
-    messenger.send({text: "Here is the realtor information for this property"}, sender);
-    messenger.send(formatter.formatBroker(), sender);
+exports.contact_me = (sender, values) => {
+    messenger.send({text: "OK, I can ask Amisha to contact you. Go ahead and type your phone number."}, sender);
 };
 
 exports.confirm_visit = (sender, values) => {
