@@ -33,7 +33,7 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 console.log('Predictions'+ predictions);
                 let predictionsJSON = JSON.parse(predictions);
                 console.log(predictionsJSON.probabilities[0].label);
-                messenger.send({text: `Looking for product matching "${predictionsJSON.probabilities[0].label}"`}, sender);
+                messenger.send({text: `Ah! You are looking for more information on ${predictionsJSON.probabilities[0].label}. Let me search and I will be right with you...`}, sender);
               });
             
         }else if (attachment.type === "location") {
