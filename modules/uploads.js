@@ -41,7 +41,7 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                     array.push(obj.label);
                 }
                 producthandler.findProductByCategory(array).then(products =>{
-                    formatter.formatProducts(properties)
+                    messenger.send(formatter.formatProducts(products),sender);
                 });
               });
             
