@@ -3,7 +3,7 @@
 let moment = require("moment"),
     numeral = require("numeral");
 
-exports.formatProperties = products => {
+exports.formatProducts = products => {
     let elements = [];
     if(products.length==0){
         return {
