@@ -31,10 +31,9 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 privateKey,
                 jwtToken
               ).then(predictions => {
-                messenger.send({text: `Ah! You are looking for more information on ${predictionsJSON.probabilities[0].label}. Let me search and I will be right with you...`}, sender);
-                    
-                var array = [];
                 let predictionsJSON = JSON.parse(predictions);
+                messenger.send({text: `Ah! You are looking for more information on ${predictionsJSON.probabilities[0].label}. Let me search and I will be right with you...`}, sender);  
+                var array = [];
                 for(var i = 0; i < predictions.length; i++) {
                     var obj = predictions[i];
                     console.log(obj.label);
