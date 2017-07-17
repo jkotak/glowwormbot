@@ -11,7 +11,12 @@ exports.thankYou = (sender) => {
 
 
 exports.help = (sender) => {
-    messenger.send({text: `*This is for demonstration only*. You can ask me "I want a pre-approval","Open a ticket", "What is my loan status", "Find houses near me", "Find houses in Boston", "3 bedrooms in Boston", "3 bedrooms in Boston between 500000 and 750000" or "what are the rates"`}, sender);
+    messenger.getUserInfo(sender).then(response => {
+        let text = 'Sure thing, ${response.first_name}. I can help you search our rates in two ways: You can either search by category or by uploading a picture. How would you like to search?'
+        let postback = ['searchByCategory','searchByImage']
+        let options = ['By Categories','By Image'];
+        messenger.send(formatter.formatQuickReplies(text,postback,options), sender);
+    });
 };
 
 
