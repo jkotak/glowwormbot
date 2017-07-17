@@ -40,6 +40,7 @@ app.get('/authorize', (req, res) => {
 });
 
 app.get('/setup',function(req,res){
+    console.log('I am being called');
     setMenu();
 });
 
