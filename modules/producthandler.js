@@ -15,7 +15,7 @@ exports.findProductByCategory = (categories) => {
 	    }
 	}
     return new Promise((resolve, reject) => {
-        Service.find(filter,(err,products) =>{
+        Service.find(filter,(err,products).limit(2) =>{
             if (err) {
                  reject("An error as occurred");
             } else {
