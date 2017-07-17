@@ -31,17 +31,17 @@ exports.formatProperties = products => {
                         {
                             "type": "postback",
                             "title": "View More Options",
-                            "payload": "schedule_visit," + product.Id
+                            "payload": "schedule_visit," + product._id
                         },
                         {
                             "type": "postback",
                             "title": "Contact Me",
-                            "payload": "contact_broker," + product.Id
+                            "payload": "contact_broker," + product._id
                         },
                         {
                             "type": "postback",
                             "title": "Incorrect Result",
-                            "payload": "contact_me," + product.Id
+                            "payload": "contact_me," + product._id
                         }
                     ]
                 })
