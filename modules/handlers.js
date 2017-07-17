@@ -12,7 +12,7 @@ exports.thankYou = (sender) => {
 
 exports.help = (sender) => {
     messenger.getUserInfo(sender).then(response => {
-        let text = 'Sure thing, ${response.first_name}. I can help you search our rates in two ways: You can either search by category or by uploading a picture. How would you like to search?'
+        let text = 'Sure thing, '+response.first_name+'. I can help you search our rates in two ways: You can either search by category or by uploading a picture. How would you like to search?'
         let postback = ['searchByCategory','searchByImage']
         let options = ['By Categories','By Image'];
         messenger.send(formatter.formatQuickReplies(text,postback,options), sender);
