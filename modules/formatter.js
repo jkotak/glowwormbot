@@ -312,7 +312,7 @@ exports.formatQuickReplies =(text,postback,options)=>{
         elements.push({  
             "content_type":"text",
             "title":options[i],
-            "payload": postback +',' + options[i]
+            "payload": postback[i]
         });
     }
     return {
