@@ -18,7 +18,7 @@ exports.confirm_visit = (sender, values) => {
 
 
 exports.view_options = (sender, values) => {
-    messenger.send({text: `Absolutely! Searching for more options...` + 'U+1F642'}, sender);
+    messenger.send({text: `Absolutely! Searching for more options...` + '\U+1F642'}, sender);
 };
 
 
