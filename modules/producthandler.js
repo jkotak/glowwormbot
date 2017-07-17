@@ -7,16 +7,16 @@ let mongoose = require("mongoose"),
         
 mongoose.Promise = global.Promise;
 
-exports.findProductByCategory = (category) => {
+exports.findProductByCategory = (categories) => {
     var filter = {
-    'product_category': { $in: category }
+    	'product_category': { $in: categories}
     };
     return new Promise((resolve, reject) => {
-        Service.find(filter,(err,product) =>{
+        Service.find(filter,(err,products) =>{
             if (err) {
                  reject("An error as occurred");
             } else {
-                resolve(newcase);
+                resolve(products);
             }
         });
     });
