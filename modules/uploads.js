@@ -34,8 +34,8 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 let predictionsJSON = JSON.parse(predictions);
                 messenger.send({text: `Ah! You are looking for more information on ${predictionsJSON.probabilities[0].label}. Let me search and I will be right with you...`}, sender);  
                 var array = [];
-                for(var i = 0; i < predictions.length; i++) {
-                    var obj = predictions[i];
+                for(var i = 0; i < predictionsJSON.probabilities.length; i++) {
+                    var obj = predictionsJSON.probabilities[i];
                     console.log(obj.label);
                     array.push(obj.label);
                 }
