@@ -31,6 +31,8 @@ exports.searchByCategory = (sender) => {
                 postbacks.push('displayCategory');
                 options.push(products.product_category);
             }
+            console.log(postbacks);
+            console.log(options);
             messenger.send(formatter.formatQuickReplies(text,postbacks,options), sender);
         });
     });
