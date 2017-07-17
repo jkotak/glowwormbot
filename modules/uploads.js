@@ -23,7 +23,6 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
     if (attachments.length > 0) {
         let attachment = attachments[0];
         if (attachment.type === "image") {
-            messenger.send({text: 'OK, let me look at that picture...'}, sender);
             let t = Episode7.run(
                 queryVisionApi,
                 pvsUrl,
