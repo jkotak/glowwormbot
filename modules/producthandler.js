@@ -39,13 +39,11 @@ exports.findProducts = (projections) => {
     });
 };
 
-exports.findOneProduct = (userid,update) => {
-    var query = {user_id: userid};
-    var options = {upsert: true,returnNewDocument:true};
+exports.findOneProduct = (query) => {
     return new Promise((resolve, reject) => {
-        Service.findOneAndUpdate(query, update, options).then(function(newcase) {
-	    console.log(newcase.user_id);
-            resolve(newcase);
+        Service.findOne(query).then(function(product) {
+	    console.log(product.user_id);
+            resolve(product);
         });
     });
 };
