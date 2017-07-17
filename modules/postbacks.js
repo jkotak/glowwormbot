@@ -2,7 +2,6 @@
 
 let messenger = require('./messenger'),
     formatter = require('./formatter'),
-    loanapplicationhandler = require('./loanapplicationhandler'),
     userinfohandler = require('./userinfohandler'),
     casehandler = require('./casehandler');
 
