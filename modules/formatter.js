@@ -40,8 +40,8 @@ exports.formatProducts = products => {
                         },
                         {
                             "type": "postback",
-                            "title": "Similar Product Recommendation",
-                            "payload": "product_recommendation," + product._id
+                            "title": "Incorrect Result",
+                            "payload": "incorrect_result," + product._id
                         }
                     ]
                 })
