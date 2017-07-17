@@ -15,14 +15,14 @@ exports.findProductByCategory = (categories) => {
 	    }
 	}
     return new Promise((resolve, reject) => {
-        Service.find(filter,(err,products).limit(2) =>{
+        Service.find(filter,(err,products) =>{
             if (err) {
                  reject("An error as occurred");
             } else {
 		console.log(products);
                 resolve(products);
             }
-        });
+        }).limit(2);
     });
 };
 
