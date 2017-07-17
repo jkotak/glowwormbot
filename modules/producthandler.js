@@ -11,9 +11,7 @@ exports.findProductByCategory = (categories) => {
     console.log(categories);
     var filter = {
 	    "product_category": {
-		"$in": [
-		    categories
-		]
+		"$in": categories
 	    }
 	}
     return new Promise((resolve, reject) => {
