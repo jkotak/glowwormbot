@@ -10,6 +10,8 @@ const privateKey = process.env.EINSTEIN_VISION_PRIVATE_KEY;
 const jwtToken = process.env.EINSTEIN_JWT_TOKEN;
 const modelId = process.env.EINSTEIN_MODEL_ID;
 
+const prediction_results = 2;
+
 const oAuthToken   = require('../lib/oauth-token'),
       updateToken  = require('../lib/update-token'),
       Episode7 = require('episode-7'),
@@ -35,7 +37,7 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 messenger.send({text: `Ah! You are looking for more information on ${predictionsJSON.probabilities[0].label}. Let me search and I will be right with you...`}, sender); 
                 messenger.setTyping ('typing_on', sender);
                 var array = [];
-                for(var i = 0; i < 2; i++) {
+                for(var i = 0; i < prediction_results; i++) {
                     var obj = predictionsJSON.probabilities[i];
                     array.push(obj.label);
                 }
