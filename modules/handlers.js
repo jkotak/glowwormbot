@@ -47,6 +47,7 @@ exports.displayCategory = (sender,params) => {
               '_id': params[1]
             }; 
     producthandler.findOneProduct(query).then(product =>{
+        console.log(product);
         messenger.send(formatter.formatProducts(product),sender);
     });
 };
