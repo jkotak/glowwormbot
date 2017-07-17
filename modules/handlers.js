@@ -25,6 +25,7 @@ exports.searchByCategory = (sender) => {
         let text = 'Absolutely, '+response.first_name+'. Which category would you like to know more about?'
         let projections = {"product_category":1};
         producthandler.findProducts(projections).then(products => {
+            console.log(products);
             var postbacks = [];
             var options = [];
             for(var i = 0; i < products.length; i++) {
