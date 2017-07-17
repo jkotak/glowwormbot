@@ -304,22 +304,9 @@ exports.formatBroker = broker => {
     };
 };
 
-exports.formatApplicationQuestions =(text,postback,options)=>{  
-    let elements = [];
-    for (var i = 0; i < options.length; i++) { 
-        elements.push({  
-            "content_type":"text",
-            "title":options[i],
-            "payload": postback +',' + options[i]
-        });
-    }
-    return {
-        "text":text,
-        "quick_replies":elements
-    };
-};
 
-exports.formatQuestions =(text,postback,options)=>{  
+
+exports.formatQuickReplied =(text,postback,options)=>{  
     let elements = [];
     for (var i = 0; i < options.length; i++) { 
         elements.push({  
