@@ -306,7 +306,7 @@ exports.formatBroker = broker => {
 
 
 
-exports.formatQuickReplied =(text,postback,options)=>{  
+exports.formatQuickReplies =(text,postback,options)=>{  
     let elements = [];
     for (var i = 0; i < options.length; i++) { 
         elements.push({  
