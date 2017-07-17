@@ -7,7 +7,8 @@ let mongoose = require("mongoose"),
         
 mongoose.Promise = global.Promise;
 
-exports.findProductByCategory = (categories) => {
+exports.findProductByCategory = (categories) => {	
+    console.log(categories);
     var filter = {
 	    "product_category": {
 		"$in": [
