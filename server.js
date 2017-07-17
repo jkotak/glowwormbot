@@ -64,6 +64,15 @@ app.post('/webhook', (req, res) => {
                             console.log("Handler " + result.handlerName + " is not defined");
                         }
                     }
+                }else if (event.message && event.message.quick_reply) {
+                    var payload = event.message.quick_reply.payload;
+                    var params = payload.split(",");
+                    let handler = handlers[params[0]];
+                    if (handler && typeof handler === "function") {
+                        handler(sender, result.match);
+                    } else {
+                        console.log("Handler " + result.handlerName + " is not defined");
+                    }
                 }else if (event.postback) {
                     let payload = event.postback.payload.split(",");
                     let postback = postbacks[payload[0]];
