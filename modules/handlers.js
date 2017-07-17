@@ -27,7 +27,7 @@ exports.searchByCategory = (sender) => {
         producthandler.findProducts(projections).then(products => {
             var postbacks = [];
             var options = [];
-            for(var i = 0; i < products; i++) {
+            for(var i = 0; i < products.length; i++) {
                 postbacks.push('displayCategory');
                 options.push(products.product_category);
             }
