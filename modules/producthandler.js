@@ -32,6 +32,7 @@ exports.findProducts = (projections) => {
             if (err) {
                  reject("An error as occurred");
             } else {
+		console.log(products);
                 resolve(products);
             }
         });
