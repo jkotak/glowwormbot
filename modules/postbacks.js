@@ -49,7 +49,7 @@ exports.occupancy_type = (sender,values) => {
 
 exports.GET_STARTED_PAYLOAD = (sender, values) => {
     messenger.getUserInfo(sender).then(response => {
-        messenger.send({text: `Hi, ${response.first_name}! Thanks for getting in touch with us! I am Glow Worm Creations' assistant. Type help if you need my assistance.`}, sender);
+        messenger.send({text: `Hi, ${response.first_name}! Thanks for getting in touch with us! I can help you find rates for our product. Type help if you need my assistance.`}, sender);
     });
 };
 
