@@ -39,6 +39,10 @@ app.get('/authorize', (req, res) => {
     res.redirect(requestURI+'&authorization_code='+token);
 });
 
+app.get('/setup',function(req,res){
+    setMenu();
+});
+
 app.post('/webhook', (req, res) => {
     if (req.body.object == "page") {
         let events = req.body.entry[0].messaging;
