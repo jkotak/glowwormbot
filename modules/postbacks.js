@@ -43,17 +43,13 @@ exports.contact_support = (sender, values) => {
     });
 };
 
-
-
-
-
 exports.occupancy_type = (sender,values) => {
     messenger.send(loanapplicationhandler.createSecondQuestion(), sender);
 }
 
 exports.GET_STARTED_PAYLOAD = (sender, values) => {
     messenger.getUserInfo(sender).then(response => {
-        messenger.send({text: `Hi, ${response.first_name}! Thanks for getting in touch with us on Messenger. Please type "help" for list of commands to get started. And before I forget, you can also use the menu below to interact with me.`}, sender);
+        messenger.send({text: `Hi, ${response.first_name}! Thanks for getting in touch with us! I am Glow Worm Creations' bot and I can recognize images. Upload an image and I can give you options around it. `}, sender);
     });
 };
 
