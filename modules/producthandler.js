@@ -42,7 +42,6 @@ exports.findProducts = (projections) => {
 exports.findOneProduct = (query) => {
     return new Promise((resolve, reject) => {
         Service.findOne(query).then(function(product) {
-	    console.log(product.user_id);
             resolve(product);
         });
     });
