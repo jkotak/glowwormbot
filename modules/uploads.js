@@ -41,6 +41,8 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                     array.push(obj.label);
                 }
                 producthandler.findProductByCategory(array).then(products =>{
+                    //not sure about this - change this to regex
+                    products[0].product_photo_url = attachment.payload.url;
                     messenger.send(formatter.formatProducts(products),sender);
                 });
               });
