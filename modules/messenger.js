@@ -40,7 +40,7 @@ exports.setTyping = (action, recipient) => {
     });
 };
 
-exports.setMenu = (buttons, disableInput) => {
+exports.setMenu = () => {
     //console.log(util.inspect(buttons));
     request({
         url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
