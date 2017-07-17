@@ -17,8 +17,8 @@ exports.confirm_visit = (sender, values) => {
 
 
 
-exports.houses_near_me = (sender, values) => {
-    messenger.send(formatter.requestLocation(), sender);
+exports.view_options = (sender, values) => {
+    messenger.send({text: `Absolutely! Searching for more options...` + 'U+1F642'}, sender);
 };
 
 
