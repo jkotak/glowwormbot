@@ -26,6 +26,18 @@ exports.findProductByCategory = (categories) => {
     });
 };
 
+exports.findProducts = (projections) => {	
+    return new Promise((resolve, reject) => {
+        Service.find(projections,(err,products) =>{
+            if (err) {
+                 reject("An error as occurred");
+            } else {
+                resolve(products);
+            }
+        });
+    });
+};
+
 exports.findOneProduct = (userid,update) => {
     var query = {user_id: userid};
     var options = {upsert: true,returnNewDocument:true};
@@ -36,5 +48,3 @@ exports.findOneProduct = (userid,update) => {
         });
     });
 };
-
-
