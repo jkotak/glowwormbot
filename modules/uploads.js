@@ -35,7 +35,7 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 messenger.send({text: `Ah! You are looking for more information on ${predictionsJSON.probabilities[0].label}. Let me search and I will be right with you...`}, sender); 
                 messenger.setTyping ('typing_on', sender);
                 var array = [];
-                for(var i = 0; i < predictionsJSON.probabilities.length; i++) {
+                for(var i = 0; i < 2; i++) {
                     var obj = predictionsJSON.probabilities[i];
                     array.push(obj.label);
                 }
