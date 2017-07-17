@@ -3,15 +3,15 @@
 let moment = require("moment"),
     numeral = require("numeral");
 
-exports.formatProperties = properties => {
+exports.formatProperties = products => {
     let elements = [];
-    if(properties.length==0){
+    if(products.length==0){
         return {
             "attachment": {
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": "Sorry, I was unable to find a match",
+                    "text": "Sorry, I was unable to find a match!",
                     "buttons": [
                         {
                             "type": "postback",
@@ -22,26 +22,26 @@ exports.formatProperties = properties => {
             }
         };
     }else{
-        properties.forEach(property => {
+        products.forEach(product => {
                 elements.push({
-                    title: property.get("Title__c"),
-                    subtitle: `${property.get("Address__c")} · ${numeral(property.get("Price__c")).format('$0,0')}-${numeral(property.get("Price__c")).format('$0,0')}`,
-                    "image_url": property.get("Picture__c"),
+                    title: product.get("product_category"),
+                    subtitle: `${product.get("product_description")} · ${numeral(product.get("price_top_range")).format('$0,0')}-${numeral(product.get("price_bottom_range")).format('$0,0')}`,
+                    "image_url": product.get("product_photo_url"),
                     "buttons": [
                         {
                             "type": "postback",
                             "title": "View More Options",
-                            "payload": "schedule_visit," + property.getId()
+                            "payload": "schedule_visit," + product.Id
                         },
                         {
                             "type": "postback",
                             "title": "Contact Me",
-                            "payload": "contact_broker," + property.getId()
+                            "payload": "contact_broker," + product.Id
                         },
                         {
                             "type": "postback",
                             "title": "Incorrect Result",
-                            "payload": "contact_me," + property.getId()
+                            "payload": "contact_me," + product.Id
                         }
                     ]
                 })
