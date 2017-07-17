@@ -1,7 +1,7 @@
 "use strict";
 
 let messenger = require('./messenger'),
-    formatter = require('./formatter'),
+    formatter = require('./formatter');
 
 exports.thankYou = (sender) => {
     messenger.getUserInfo(sender).then(response => {
