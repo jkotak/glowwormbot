@@ -55,6 +55,17 @@ app.post('/webhook', (req, res) => {
                 if (process.env.MAINTENANCE_MODE && ((event.message && event.message.text) || event.postback)) {
                     sendMessage({text: `Sorry I'm taking a break right now.`}, sender);
                 } else if (event.message && event.message.text) {
+                    if (event.message && event.message.quick_reply) {
+                        console.log('Quick Reply'+event.message.quick_reply);
+                        var payload = event.message.quick_reply.payload;
+                        var params = payload.split(",");
+                        let handler = handlers[params[0]];
+                        if (handler && typeof handler === "function") {
+                            handler(sender, result.match);
+                        } else {
+                            console.log("Handler " + result.handlerName + " is not defined");
+                        }
+                    }
                     let result = processor.match(event.message.text);
                     if (result) {
                         let handler = handlers[result.handler];
@@ -63,16 +74,6 @@ app.post('/webhook', (req, res) => {
                         } else {
                             console.log("Handler " + result.handlerName + " is not defined");
                         }
-                    }
-                }else if (event.message && event.message.quick_reply) {
-                    console.log('Quick Reply'+event.message.quick_reply);
-                    var payload = event.message.quick_reply.payload;
-                    var params = payload.split(",");
-                    let handler = handlers[params[0]];
-                    if (handler && typeof handler === "function") {
-                        handler(sender, result.match);
-                    } else {
-                        console.log("Handler " + result.handlerName + " is not defined");
                     }
                 }else if (event.postback) {
                     let payload = event.postback.payload.split(",");
