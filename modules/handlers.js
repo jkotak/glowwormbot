@@ -20,7 +20,7 @@ exports.help = (sender) => {
     });
 };
 
-exports.searchByCategory = (sender) => {
+exports.searchByCategory = (sender,params) => {
     messenger.getUserInfo(sender).then(response => {
         let text = 'Absolutely, '+response.first_name+'. Which category would you like to know more about?'
         let projections = {"product_category":1};
@@ -29,7 +29,7 @@ exports.searchByCategory = (sender) => {
             var postbacks = [];
             var options = [];
             for(var i = 0; i < products.length; i++) {
-                postbacks.push('displayCategory');
+                postbacks.push('displayCategory,'+products[i]._id);
                 options.push(products[i].product_category);
             }
             console.log(postbacks);
@@ -42,6 +42,14 @@ exports.searchByImage = (sender) => {
     messenger.send({text: `OK, you can upload the image using messenger. Either take a picture of the product or just upload an image from your library. Go ahead and upload the picture.. I will wait`}, sender);
 };
 
+exports.displayCategory = (sender,params) => {
+    var query = {
+              '_id': params[1]
+            }; 
+    producthandler.findOneProduct(query).then(product =>{
+        messenger.send(formatter.formatProducts(product),sender);
+    });
+};
 
 
 
