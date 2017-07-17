@@ -55,6 +55,14 @@ app.post('/webhook', (req, res) => {
                     sendMessage({text: `Sorry I'm taking a break right now.`}, sender);
                 } else if (event.message && event.message.text) {
                     let result = processor.match(event.message.text);
+                    if (result) {
+                        let handler = handlers[result.handler];
+                        if (handler && typeof handler === "function") {
+                            handler(sender, result.match);
+                        } else {
+                            console.log("Handler " + result.handlerName + " is not defined");
+                        }
+                    }
                 }else if (event.postback) {
                     let payload = event.postback.payload.split(",");
                     let postback = postbacks[payload[0]];
