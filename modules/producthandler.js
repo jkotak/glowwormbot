@@ -40,6 +40,7 @@ exports.findProducts = (projections) => {
 };
 
 exports.findOneProduct = (query) => {
+    console.log(query);
     return new Promise((resolve, reject) => {
         Service.findOne(query).then(function(product) {
             resolve(product);
