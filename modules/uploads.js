@@ -10,7 +10,7 @@ const privateKey = process.env.EINSTEIN_VISION_PRIVATE_KEY;
 const jwtToken = process.env.EINSTEIN_JWT_TOKEN;
 const modelId = process.env.EINSTEIN_MODEL_ID;
 
-const prediction_results = 2;
+const prediction_results = 1;
 
 const oAuthToken   = require('../lib/oauth-token'),
       updateToken  = require('../lib/update-token'),
