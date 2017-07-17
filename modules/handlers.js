@@ -30,7 +30,7 @@ exports.searchByCategory = (sender) => {
             var options = [];
             for(var i = 0; i < products.length; i++) {
                 postbacks.push('displayCategory');
-                options.push(products.product_category);
+                options.push(products[i].product_category);
             }
             console.log(postbacks);
             console.log(options);
