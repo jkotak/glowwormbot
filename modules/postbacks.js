@@ -15,7 +15,11 @@ exports.confirm_visit = (sender, values) => {
     messenger.send({text: `Cool, I have asked Amisha to contact you at ${values[2]}. Thank you for contacting us!` + '\U+1F642'}, sender);
 };
 
-
+exports.incorrect_result = (sender, values) => {
+    messenger.getUserInfo(sender).then(response => {
+        messenger.send({text: `I am so sorry, ${response.first_name}! I have informed Amisha and provided all the information you have entered. She will contact you shorly.`}, sender);
+    });
+};
 
 exports.view_options = (sender, values) => {
     messenger.send({text: `Absolutely! Searching for more options...` + '\U+1F642'}, sender);
