@@ -65,6 +65,7 @@ app.post('/webhook', (req, res) => {
                         }
                     }
                 }else if (event.message && event.message.quick_reply) {
+                    console.log('Quick Reply'+event.message.quick_reply);
                     var payload = event.message.quick_reply.payload;
                     var params = payload.split(",");
                     let handler = handlers[params[0]];
