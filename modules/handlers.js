@@ -28,7 +28,7 @@ exports.searchByCategory = (sender) => {
             var postbacks = [];
             var options = [];
             for(var i = 0; i < products; i++) {
-                postbacks.push('displayCategory);
+                postbacks.push('displayCategory');
                 options.push(products.product_category);
             }
             messenger.send(formatter.formatQuickReplies(text,postbacks,options), sender);
