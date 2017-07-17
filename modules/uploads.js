@@ -37,7 +37,6 @@ exports.processUpload = (sender, attachments,lastKeyword) => {
                 var array = [];
                 for(var i = 0; i < predictionsJSON.probabilities.length; i++) {
                     var obj = predictionsJSON.probabilities[i];
-                    console.log(obj.label);
                     array.push(obj.label);
                 }
                 producthandler.findProductByCategory(array).then(products =>{
