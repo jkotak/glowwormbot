@@ -12,7 +12,7 @@ exports.contact_me = (sender, values) => {
 };
 
 exports.confirm_visit = (sender, values) => {
-    messenger.send({text: `OK, your appointment is confirmed for ${values[2]}. ${values[1]}.`}, sender);
+    messenger.send({text: `Cool, I have asked Amisha to contact you at ${values[2]}. Thank you for contacting us!` + 'U+1F642'}, sender);
 };
 
 
